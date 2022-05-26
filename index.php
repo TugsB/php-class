@@ -1,5 +1,11 @@
 <?php
-    $posts=include "helpers/posts.php"
+   // $posts=include "helpers/posts.php"
+
+    include 'include/function.php';
+    //prosimDelaj();
+    $posts = allPosts();
+    //$posts = new Post();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +18,7 @@
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
 </head>
 <body>
 <!-- Responsive navbar-->
@@ -31,22 +37,13 @@
 </nav>
 <!-- Page content-->
 <div class="container">
+    <div class="row">
     <?php
     foreach ($posts as $id => $post){
-        echo'<div class="col-sm-4">';
-        echo' <img src="'.$post['image']['url']. '">';
-
-        echo"<h1>{$post['title']}</h1>";
-        echo substr($post["content"], 0, 150)."...";
-        echo $post["authored by"];
-        $date= gmdate("d-m-Y", ($post)["authored on"]);
-        echo "<p><small>{$date}</small></p>";
-        echo "<a href =\"article.php?id={$id}\">Preberi več</a>";
-        echo '</div>';
-
-
+        $post->izpisiOsnutek();
     }
     ?>
+    </div>
 </div>
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
